@@ -1,0 +1,80 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2017-01-21T21:14:46.044Z",
+	"__export_source": "insomnia.desktop.app:v4.1.1",
+	"resources": [
+		{
+			"_id": "wrk_6b82f0562b92462685ec86d497c97345",
+			"parentId": null,
+			"modified": 1485033088819,
+			"created": 1485033088819,
+			"name": "My Garden",
+			"description": "",
+			"certificates": [],
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_2b45845b3b444c728cffeef57316dbc7",
+			"parentId": "wrk_6b82f0562b92462685ec86d497c97345",
+			"modified": 1485033186389,
+			"created": 1485033186389,
+			"name": "Base Environment",
+			"data": {},
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_419143dcba144a1489c38a48e44f1bc9",
+			"parentId": "wrk_6b82f0562b92462685ec86d497c97345",
+			"modified": 1485033187909,
+			"created": 1485033186542,
+			"name": "Default Jar",
+			"cookies": [
+				{
+					"creation": "2017-01-21T21:13:07.876Z",
+					"key": "JSESSIONID",
+					"value": "26578B357A28F818A42F0BA9F1A6312C",
+					"path": "/",
+					"httpOnly": true,
+					"hostOnly": true,
+					"domain": "localhost",
+					"lastAccessed": "2017-01-21T21:13:07.876Z"
+				}
+			],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_cb599368b0004902918dfec43c0d923e",
+			"parentId": "wrk_6b82f0562b92462685ec86d497c97345",
+			"modified": 1485033099477,
+			"created": 1485033099477,
+			"name": "Authorization",
+			"environment": {},
+			"metaSortKey": -1485033099477,
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_792c0187f0fc47a6bf4d31cbd4438bf1",
+			"parentId": "fld_cb599368b0004902918dfec43c0d923e",
+			"modified": 1485033138591,
+			"created": 1485033105652,
+			"url": "http://localhost:8080/api/auth/login",
+			"name": "Login",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\"email\":\"user\",\"password\":\"user\"}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1485033105652,
+			"_type": "request"
+		}
+	]
+}

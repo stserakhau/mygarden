@@ -1,0 +1,41 @@
+*[role="ROLE_USER"] {
+    display: none;
+}
+
+#loginDialog {
+    position: absolute;
+    top: 0;
+    left:0;
+    width:100%;
+    height: 100%;
+    opacity: 0.95;
+    background-color: #000000;
+}
+
+#loginDialog > form {
+    opacity: 1;
+    background-color: #ffffff;
+    display: inline-block;
+    position: fixed;
+    left: calc(50% - 200px);
+    top: calc(50% - 200px);
+    text-align: right;
+
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#loginDialog > form > * {
+    margin : 2px;
+}
+
+#loginDialog > form > label {
+    width:100px;
+    text-align: right;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#loginDialog > form > button {
+
+}

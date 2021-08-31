@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /experiments
+Disallow: /fonts
+Disallow: /fonts
+Disallow: /help
+Disallow: /static

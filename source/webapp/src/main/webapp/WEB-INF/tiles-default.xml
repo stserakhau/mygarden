@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="layout1" template="/WEB-INF/jsp/layouts/layout-1.jsp"/>
+    <definition name="layout2" template="/WEB-INF/jsp/layouts/layout-2.jsp"/>
+    <definition name="layout3" template="/WEB-INF/jsp/layouts/layout-3.jsp"/>
+    <definition name="layout4" template="/WEB-INF/jsp/layouts/layout-4.jsp"/>
+
+    <definition name="news4columns" template="/WEB-INF/jsp/ads/news4columns.jsp"
+                preparer="com.i4biz.mygarden.web.tiles.NewsAdsContentPreparer">
+        <put-attribute name="AD_ROWS_COUNT" type="java.lang.Integer" value="1" cascade="true"/>
+    </definition>
+
+    <definition name="news4columnsVert" template="/WEB-INF/jsp/ads/news4columnsVert.jsp"
+                preparer="com.i4biz.mygarden.web.tiles.NewsAdsContentPreparer"/>
+
+    <definition name="layoutHelp" template="/WEB-INF/jsp/layouts/layout-help.jsp">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+    </definition>
+
+    <definition name="about_demo_news" template="/WEB-INF/jsp/home/about_demo_news.jsp">
+        <put-attribute name="news" value="news4columns"/>
+        <put-attribute name="AD_ROWS_COUNT" type="java.lang.Integer" value="2" cascade="true"/>
+    </definition>
+
+    <definition name="homepage" extends="layout3">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Планировщик садовых работ"/>
+        <put-attribute name="body" value="about_demo_news"/>
+    </definition>
+    <definition name="aboutProject" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Планировщик садовых работ"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/home/about.jsp"/>
+    </definition>
+
+    <definition name="feedback" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Обратная связь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/home/feedback.jsp"/>
+    </definition>
+
+    <definition name="ads" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Реклама на портале"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/home/ads.jsp"/>
+    </definition>
+
+    <definition name="demo" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Презентация проекта"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/demo/demo.jsp"/>
+    </definition>
+
+    <definition name="cooperation" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Сотрудничество"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/home/cooperation.jsp"/>
+    </definition>
+
+    <definition name="species_inventory_user" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.SpeciesInventoryViewPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--put-attribute name="ads" value="news4columns"/-->
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Моя библиотека"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/inventory/species_inventory_user.jsp"/>
+    </definition>
+
+    <definition name="species_inventory_system" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.SpeciesInventorySystemViewPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="300000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Культуры"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/inventory/species_inventory_system.jsp"/>
+        <put-list-attribute name="months">
+            <add-attribute value="---- Без даты ----"/>
+            <add-attribute value="Январь"/>
+            <add-attribute value="Февраль"/>
+            <add-attribute value="Март"/>
+            <add-attribute value="Апрель"/>
+            <add-attribute value="Май"/>
+            <add-attribute value="Июнь"/>
+            <add-attribute value="Июль"/>
+            <add-attribute value="Август"/>
+            <add-attribute value="Сентябрь"/>
+            <add-attribute value="Октябрь"/>
+            <add-attribute value="Ноябрь"/>
+            <add-attribute value="Декабрь"/>
+        </put-list-attribute>
+    </definition>
+
+    <definition name="species_settings" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.SpeciesStaticContentPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Планировщик садовых работ"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/inventory/species_settings.jsp"/>
+    </definition>
+
+    <definition name="fertilizers_inventory" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.FertilizerInventoryViewPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Библиотека удобрений"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/inventory/fertilizer_inventory.jsp"/>
+    </definition>
+
+    <definition name="fertilizer_settings" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.FertilizerStaticContentPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Планировщик садовых работ"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/inventory/fertilizer_settings.jsp"/>
+    </definition>
+
+    <definition name="agricultural_inventory" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Сельскохозяйственный инвентарь и техника"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/inventory/agricultural_inventory.jsp"/>
+    </definition>
+
+
+    <definition name="user_agreement" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Пользовательское соглашение"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/user_agreement.jsp"/>
+    </definition>
+
+    <definition name="user_registration" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Регистрация пользователя"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/registration.jsp"/>
+    </definition>
+
+    <definition name="user_registration_successful" extends="layout3">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Регистрация пользователя"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/registrationSuccessful.jsp"/>
+    </definition>
+
+    <definition name="user_reset_password" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Установка пароля"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/reset_password.jsp"/>
+    </definition>
+
+    <definition name="user_forgot_password" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Восстановление пароля"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/forgot_password.jsp"/>
+    </definition>
+
+    <definition name="my_work_plan" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Мой план работ"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/my_work_plan.jsp"/>
+    </definition>
+
+    <definition name="add_species_work" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.SpeciesStaticContentPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Планировщик садовых работ"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/add_species_work.jsp"/>
+    </definition>
+
+    <definition name="edit_user_work_template" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.UserWorkStaticContentPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Мои способы выращивания"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/edit_user_work_template.jsp"/>
+    </definition>
+
+    <definition name="select_user_work_template" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.SpeciesStaticContentPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Выбор способа выращивания"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/select_user_work_template.jsp"/>
+    </definition>
+
+    <definition name="add_system_species_work" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.SystemSpeciesStaticContentPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="300000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Планировщик садовых работ"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/add_system_species_work.jsp"/>
+    </definition>
+
+    <definition name="select_system_work_template" extends="layout4"
+                preparer="com.i4biz.mygarden.web.tiles.SystemSpeciesStaticContentPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="300000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Выбор способа выращивания"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/select_system_work_template.jsp"/>
+    </definition>
+
+    <definition name="user_profile" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Профиль пользователя"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/user_profile.jsp"/>
+    </definition>
+
+    <definition name="work_inventory" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Работы"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/inventory/work_inventory.jsp"/>
+    </definition>
+
+    <definition name="my_plant" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Мои участки"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/my_plants.jsp"/>
+    </definition>
+
+    <definition name="edit_my_plant" extends="layout4">
+        <put-attribute type="string" name="cacheTimeout" value="86400000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Мои огород"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/edit_my_plant.jsp"/>
+    </definition>
+
+    <definition name="help_species_inventory" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_species_inventory.jsp"/>
+    </definition>
+    <definition name="help_add_species_class" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_species_class.jsp"/>
+    </definition>
+    <definition name="help_edit_species_class" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_edit_species_class.jsp"/>
+    </definition>
+    <definition name="help_delete_species_class" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_species_class.jsp"/>
+    </definition>
+    <definition name="help_add_species" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_species.jsp"/>
+    </definition>
+    <definition name="help_edit_species" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_edit_species.jsp"/>
+    </definition>
+    <definition name="help_delete_species" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_species.jsp"/>
+    </definition>
+    <definition name="help_copy_species" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_copy_species.jsp"/>
+    </definition>
+    <definition name="help_view_species_templates" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_view_species_templates.jsp"/>
+    </definition>
+    <definition name="help_add_template" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_template.jsp"/>
+    </definition>
+    <definition name="help_view_template" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_view_template.jsp"/>
+    </definition>
+    <definition name="help_edit_template" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_edit_template.jsp"/>
+    </definition>
+    <definition name="help_copy_template" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_copy_template.jsp"/>
+    </definition>
+    <definition name="help_delete_template" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_template.jsp"/>
+    </definition>
+    <definition name="help_add_template_work" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_template_work.jsp"/>
+    </definition>
+    <definition name="help_edit_template_work" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_edit_template_work.jsp"/>
+    </definition>
+    <definition name="help_delete_template_work" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_template_work.jsp"/>
+    </definition>
+    <definition name="help_work_inventory" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_work_inventory.jsp"/>
+    </definition>
+    <definition name="help_add_work" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_work.jsp"/>
+    </definition>
+    <definition name="help_edit_work" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_edit_work.jsp"/>
+    </definition>
+    <definition name="help_delete_work" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_work.jsp"/>
+    </definition>
+    <definition name="help_view_work_species" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_view_work_species.jsp"/>
+    </definition>
+    <definition name="help_fertilizer_inventory" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_fertilizer_inventory.jsp"/>
+    </definition>
+    <definition name="help_add_fertilizer_class" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_fertilizer_class.jsp"/>
+    </definition>
+    <definition name="help_edit_fertilizer_class" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_edit_fertilizer_class.jsp"/>
+    </definition>
+    <definition name="help_delete_fertilizer_class" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_fertilizer_class.jsp"/>
+    </definition>
+    <definition name="help_add_fertilizer" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_fertilizer.jsp"/>
+    </definition>
+    <definition name="help_edit_fertilizer" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_edit_fertilizer.jsp"/>
+    </definition>
+    <definition name="help_delete_fertilizer" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_fertilizer.jsp"/>
+    </definition>
+    <definition name="help_view_fertilizer_settings" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_view_fertilizer_settings.jsp"/>
+    </definition>
+    <definition name="help_add_fertilizer_settings" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_fertilizer_settings.jsp"/>
+    </definition>
+    <definition name="help_restore_fertilizer_settings" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_restore_fertilizer_settings.jsp"/>
+    </definition>
+    <definition name="help_restore_fertilizer_library_settings" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_restore_fertilizer_library_settings.jsp"/>
+    </definition>
+    <definition name="help_delete_fertilizer_settings" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_fertilizer_settings.jsp"/>
+    </definition>
+
+    <definition name="help_my_work_plan" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_my_work_plan.jsp"/>
+    </definition>
+    <definition name="help_add_species_plan" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_add_species_plan.jsp"/>
+    </definition>
+    <definition name="help_save_plan_as_template" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_save_plan_as_template.jsp"/>
+    </definition>
+    <definition name="help_edit_species_plan" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_edit_species_plan.jsp"/>
+    </definition>
+    <definition name="help_delete_species_plan" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_species_plan.jsp"/>
+    </definition>
+    <definition name="help_delete_work_from_species_plan" extends="layoutHelp">
+        <put-attribute name="title" value="Помощь"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/help/help_delete_work_from_species_plan.jsp"/>
+    </definition>
+
+
+    <!-- ========================================================================== -->
+    <!-- ============================  News  ====================================== -->
+    <!-- ========================================================================== -->
+
+    <definition name="layoutNews" template="/WEB-INF/jsp/layouts/layout-news.jsp">
+        <put-attribute name="navigation" value="news_vertical_navigation"/>
+    </definition>
+
+    <definition name="news_vertical_navigation"
+                template="/WEB-INF/jsp/news/news_vertical_navigation.jsp"
+                preparer="com.i4biz.mygarden.web.tiles.NewsVerticalNavigatorPreparer"/>
+
+
+    <definition name="news" extends="layoutNews" preparer="com.i4biz.mygarden.web.tiles.NewsViewPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Новости"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/news/news.jsp"/>
+    </definition>
+
+    <definition name="news_full" extends="layoutNews" preparer="com.i4biz.mygarden.web.tiles.NewsFullContentPreparer">
+        <put-attribute type="string" name="cacheTimeout" value="10000"/>
+        <!--1 day = 86400 seconds-->
+        <put-attribute name="title" value="Новости"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/news/news_full.jsp"/>
+    </definition>
+
+
+</tiles-definitions>

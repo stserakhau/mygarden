@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript">
+        var gr = {
+            levels: [
+                [
+                    {id: 1, title: 'Посев семян в открытый грунт'},
+                    {id: 2, title: 'Посев семян в крытый грунт'}
+                ],
+                [{id: 3, title: 'Пикировка всходов'}],
+                [{id: 4, title: 'Обработка посадочного материала'}],
+                [
+                    {id: 5, title: 'Посадка севка в открытый грунт'},
+                    {id: 6, title: 'Посадка севка в крытый грунт'}
+                ],
+                [{id: 7, title: 'Подкормка'}],
+                [{id: 8, title: 'Уборка урожая'}]
+            ]
+        }
+
+        var path = [1, 3, 4, 6, 7, 8];
+
+        var boxWidth = 160;
+
+        function init(graph) {
+            var svg = document.getElementById('workflow');
+
+            var levels = graph.levels;
+            var previousLevel = [];
+            var width = new Number(svg.getAttribute("width"));
+            var y = 10;
+
+            for (var i = 0; i < levels.length; i++) {
+                var levelCount = levels[i].length;
+                var xStart = width / levelCount - (width / levelCount) / 2 - boxWidth / 2;
+                var dx = width / levelCount;
+                var currentLevel = [];
+                for (var j = 0; j < levels[i].length; j++) {
+                    var node = levels[i][j];
+
+                    var selected = path.indexOf(node.id) > -1;
+
+                    var svgText = createSVGtext(xStart, y, node.title, selected);
+                    svg.appendChild(svgText);
+
+                    for (var k = 0; k < previousLevel.length; k++) {
+                        var pos = previousLevel[k];
+                        var line = createLine(pos.x, pos.y, xStart + boxWidth / 2, y);
+                        svg.appendChild(line);
+                    }
+
+                    currentLevel.push({x: xStart + boxWidth / 2, y: y + svgText.getBBox().height});
+
+                    xStart += dx;
+                }
+                y += 90;
+                previousLevel = currentLevel;
+            }
+        }
+
+        function createSVGtext(x, y, caption, selected) {
+            //  This function attempts to create a new svg "text" element, chopping
+            //  it up into "tspan" pieces, if the caption is too long
+            //
+
+            var selectedStyle = 'fill:#9ed598;stroke-width:1;stroke:rgb(0,0,0)';
+            var unselectedStyle = 'fill:#ffeb3b;stroke-width:1;stroke:rgb(0,0,0)';
+
+            var padding = 5;
+            var fontSize = 12;
+
+            var boxGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            boxGroup.selected = selected;
+
+            var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttributeNS(null, 'x', x);
+            rect.setAttributeNS(null, 'y', y);
+            rect.setAttributeNS(null, 'width', boxWidth);
+            rect.setAttributeNS(null, 'style', boxGroup.selected ? selectedStyle : unselectedStyle);
+
+            boxGroup.onclick = function () {
+                boxGroup.selected = !boxGroup.selected;
+                rect.setAttributeNS(null, 'style', boxGroup.selected ? selectedStyle : unselectedStyle);
+            };
+
+
+            boxGroup.appendChild(rect);
+
+            var svgText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            var textX = x + boxWidth / 2;
+            var textY = y + fontSize + padding;
+            svgText.setAttributeNS(null, 'x', textX);
+            svgText.setAttributeNS(null, 'y', textY);
+            svgText.setAttributeNS(null, 'font-size', fontSize);
+            svgText.setAttributeNS(null, 'fill', '#000000');         //  White text
+            svgText.setAttributeNS(null, 'text-anchor', 'middle');   //  Center the text
+
+            //  The following two variables should really be passed as parameters
+            var MAXIMUM_CHARS_PER_LINE = 24;
+            var LINE_HEIGHT = 14;
+
+            var words = caption.split(" ");
+            var line = "";
+
+            var rowCount = 1;
+            for (var n = 0; n < words.length; n++) {
+                var testLine = line + words[n] + " ";
+                if (testLine.length > MAXIMUM_CHARS_PER_LINE) {
+                    //  Add a new <tspan> element
+                    var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    svgTSpan.setAttributeNS(null, 'x', textX);
+                    svgTSpan.setAttributeNS(null, 'y', textY);
+
+                    var tSpanTextNode = document.createTextNode(line);
+                    svgTSpan.appendChild(tSpanTextNode);
+                    svgText.appendChild(svgTSpan);
+
+                    line = words[n] + " ";
+                    textY += LINE_HEIGHT;
+                    rowCount++;
+                }
+                else {
+                    line = testLine;
+                }
+            }
+
+            var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+            svgTSpan.setAttributeNS(null, 'x', textX);
+            svgTSpan.setAttributeNS(null, 'y', textY);
+
+            rect.setAttributeNS(null, 'height', rowCount * LINE_HEIGHT + 2 * padding);
+
+            var tSpanTextNode = document.createTextNode(line);
+            svgTSpan.appendChild(tSpanTextNode);
+
+            svgText.appendChild(svgTSpan);
+
+            boxGroup.appendChild(svgText);
+
+            return boxGroup;
+        }
+
+        function createLine(x1, y1, x2, y2) {
+            //<line x1="10" y1="10" x2="50" y2="10" marker-end="url(#arrowEnd)" stroke="black" stroke-width="1"/>
+            var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttributeNS(null, 'x1', x1);
+            line.setAttributeNS(null, 'y1', y1);
+            line.setAttributeNS(null, 'x2', x2);
+            line.setAttributeNS(null, 'y2', y2);
+            line.setAttributeNS(null, 'marker-end', 'url(#arrowEnd)');
+            line.setAttributeNS(null, 'stroke', '#000000');
+            line.setAttributeNS(null, 'stroke-width', '1');
+
+            return line;
+        }
+    </script>
+</head>
+<body onload="init(gr)">
+<svg id="workflow" width="600" height="800" style="border:#000000 solid 1px;">
+    <defs id="arrowDefs">
+        <marker id="arrowEnd" fill="blue" stroke-linejoin="bevel" viewBox="0 0 8000 8000" refX="280" refY="150"
+                markerUnits="strokeWidth" markerWidth="300" markerHeight="300" orient="auto">
+            <path id="arrowEndPath" stroke="rgb(0, 0, 0)" stroke-width="5" d="M 2 59 L 293 148 L 1 243 L 121 151 Z"/>
+        </marker>
+    </defs>
+</svg>
+
+</body>
+</html>

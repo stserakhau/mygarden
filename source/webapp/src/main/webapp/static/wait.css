@@ -1,0 +1,99 @@
+.cssload-square{
+    margin:auto;
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    height:24px;
+    width:24px;
+    background-color:rgb(51,51,51);
+    border-radius:50%;
+    animation: cssload-s1 2.3s infinite;
+    -o-animation: cssload-s1 2.3s infinite;
+    -ms-animation: cssload-s1 2.3s infinite;
+    -webkit-animation: cssload-s1 2.3s infinite;
+    -moz-animation: cssload-s1 2.3s infinite;
+}
+
+.cssload-square div{
+    position:absolute;
+    background-color:rgb(158,87,199);
+    box-shadow: 0 0 20px rgb(0,0,0);
+    -o-box-shadow: 0 0 20px rgb(0,0,0);
+    -ms-box-shadow: 0 0 20px rgb(0,0,0);
+    -webkit-box-shadow: 0 0 20px rgb(0,0,0);
+    -moz-box-shadow: 0 0 20px rgb(0,0,0);
+    opacity:0.5;
+    width:100%;
+    height:100%;
+    top:12px;
+    right:12px;
+    animation: cssload-s1 2.3s infinite;
+    -o-animation: cssload-s1 2.3s infinite;
+    -ms-animation: cssload-s1 2.3s infinite;
+    -webkit-animation: cssload-s1 2.3s infinite;
+    -moz-animation: cssload-s1 2.3s infinite;
+    animation-timing-function: cubic-bezier(1,.45,.45,1);
+    -o-animation-timing-function: cubic-bezier(1,.45,.45,1);
+    -ms-animation-timing-function: cubic-bezier(1,.45,.45,1);
+    -webkit-animation-timing-function: cubic-bezier(1,.45,.45,1);
+    -moz-animation-timing-function: cubic-bezier(1,.45,.45,1);
+    transform-origin: 50%;
+    -o-transform-origin: 50%;
+    -ms-transform-origin: 50%;
+    -webkit-transform-origin: 50%;
+    -moz-transform-origin: 50%;
+}
+.cssload-square div + div, .cssload-square div + div div{
+    position:absolute;
+    background-color:rgb(60,115,66);
+    height:100%;
+    width:100%;
+    top:-12px;
+    right:-12px;
+}
+.cssload-two{
+    transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    animation: cssload-s1 1.15s infinite;
+    -o-animation: cssload-s1 1.15s infinite;
+    -ms-animation: cssload-s1 1.15s infinite;
+    -webkit-animation: cssload-s1 1.15s infinite;
+    -moz-animation: cssload-s1 1.15s infinite;
+}
+
+@keyframes cssload-s1{
+    50%{
+        transform: rotate(360deg);
+        opacity:.7;
+    }
+}
+
+@-o-keyframes cssload-s1{
+    50%{
+        -o-transform: rotate(360deg);
+        opacity:.7;
+    }
+}
+
+@-ms-keyframes cssload-s1{
+    50%{
+        -ms-transform: rotate(360deg);
+        opacity:.7;
+    }
+}
+
+@-webkit-keyframes cssload-s1{
+    50%{
+        -webkit-transform: rotate(360deg);
+        opacity:.7;
+    }
+}
+
+@-moz-keyframes cssload-s1{
+    50%{
+        -moz-transform: rotate(360deg);
+        opacity:.7;
+    }
+}

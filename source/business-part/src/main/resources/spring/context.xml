@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+                           http://www.springframework.org/schema/context
+    					   http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+    <context:property-placeholder
+            location="${config.file}"
+            ignore-unresolvable="true"
+            ignore-resource-not-found="true"
+            system-properties-mode="OVERRIDE"/>
+
+    <aop:aspectj-autoproxy />
+
+    <bean id="performanceAspect" class="com.i4biz.mygarden.utils.PerformanceAspect"/>
+
+    <context:component-scan base-package="com.i4biz.mygarden"/>
+
+    <!--    <bean id="slowPerformanceAspect" class="com.i4biz.autobiz.security.SlowPerformanceAspect" scope="singleton">
+            <property name="licenseService" ref="licenseService"/>
+        </bean>
+
+        <aop:config>
+            <aop:aspect ref="slowPerformanceAspect">
+                <aop:pointcut id="checkLicense" expression="execution (* com.i4biz.autobiz.service..*.*(..))"/>
+                <aop:before method="slowService" pointcut-ref="checkLicense"/>
+            </aop:aspect>
+        </aop:config>-->
+
+    <!--    <bean id="templateConfigSource" class="com.i4biz.autobiz.service.documentgenerator.TemplateFileSource">
+            <constructor-arg value="${documentGenerator.folder.config}"/>
+        </bean>
+        <bean id="templateSource" class="com.i4biz.autobiz.service.documentgenerator.TemplateFileSource">
+            <constructor-arg value="${documentGenerator.folder.templates}"/>
+        </bean>
+        <bean id="pdfGenerator" class="com.i4biz.autobiz.service.documentgenerator.fop.FOPDocumentGeneratorService">
+            <constructor-arg index="0" ref="templateConfigSource"/>
+            <constructor-arg index="1" ref="templateSource"/>
+        </bean>-->
+
+
+    <bean id="xslTemplateSource" class="com.i4biz.mygarden.service.documentgenerator.TemplateFileSource">
+        <constructor-arg value="${documentGenerator.folder.xsl-templates}"/>
+    </bean>
+    <bean id="xslGenerator" class="com.i4biz.mygarden.service.documentgenerator.xsl.XSLDocumentGeneratorService">
+        <constructor-arg index="0" ref="xslTemplateSource"/>
+    </bean>
+
+
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.smtp.host}"/>
+        <property name="port" value="${mail.smtp.port}"/>
+        <property name="protocol" value="smtp"/>
+        <property name="username" value="${mail.smtp.username}"/>
+        <property name="password" value="${mail.smtp.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.quitwait">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--<task:annotation-driven executor="myExecutor" scheduler="myScheduler" />-->
+    <task:executor id="myExecutor" pool-size="5" />
+    <task:scheduler id="myScheduler" pool-size="10" />
+
+    <task:scheduled-tasks scheduler="myScheduler">
+        <task:scheduled ref="weatherLoader" method="loadWeather" fixed-delay="${weather.loader.fixedDelay}"/>
+
+        <task:scheduled ref="userTaskNotificationService" method="sendNotification" fixed-delay="${userTask.notificationGenerator.fixedDelay}"/>
+
+        <task:scheduled ref="newsletterService" method="send" cron="${newsletter.sender.cron}"/>
+
+        <!--<task:scheduled ref="userTaskNotificationService" method="sendWeatherNotification" cron="${weather.notificationGenerator.cron}"/>-->
+
+        <task:scheduled ref="mailSender" method="sendEmails" fixed-delay="${email.sender.fixedDelay}"/>
+        <task:scheduled ref="mailSender" method="cleanSentEmails" fixed-delay="${email.cleaner.fixedDelay}"/>
+
+        <task:scheduled ref="newsPublisherService" method="uploadNews" cron="${news.uploaderCron}"/>
+        <task:scheduled ref="newsPublisherService" method="processDeployments" cron="${news.deployerCron}"/>
+    </task:scheduled-tasks>
+</beans>

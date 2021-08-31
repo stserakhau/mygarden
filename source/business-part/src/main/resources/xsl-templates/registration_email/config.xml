@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding="utf-8"?>
+<email>
+    <from>info@egardening.ru</from>
+    <subject>Активация профиля пользователя eGardening.ru</subject>
+    <content type="xsl" file="default.xsl"/>
+    <inline name="cid" file="html5.gif"/>
+</email>

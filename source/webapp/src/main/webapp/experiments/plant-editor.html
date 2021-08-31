@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/jquery-3.1.1.min.js"></script>
+    <!-- http://fabricjs.com/build/ -->
+    <script src="../static/fabric.js"></script>
+
+    <script type="text/javascript">
+        var fieldWidth = 70;//70 meters
+        var fieldHeight = 30;//30 meter
+        var pixelsPerMeter = 10;//10 pixels per meter
+        var uiWidth = fieldWidth * pixelsPerMeter;// UI width
+        var uiHeight = fieldHeight * pixelsPerMeter;// UI height
+        var canvas;
+
+        function onload() {
+            canvas = new fabric.Canvas('c', {
+                backgroundColor: '#745C3D',
+                selectionColor: 'blue',
+                selectionLineWidth: 2,
+                width: uiWidth,
+                height: uiHeight,
+                selection: true,
+                stopContextMenu: true,
+                fireRightClick: true
+            });
+        }
+
+        function createRect(width, height, color) {
+            var rect = new fabric.Rect({
+                left: 50,
+                top: 50,
+                fill: '#' + color,
+                type: 'cropper',
+                width: width * pixelsPerMeter,
+                height: height * pixelsPerMeter});
+            rect.on({
+                'scaling': function(e) {
+                    var obj = this,
+                            w = obj.width * obj.scaleX,
+                            h = obj.height * obj.scaleY,
+                            s = obj.strokeWidth;
+
+                    obj.set({
+                        'height'     : h,
+                        'width'      : w,
+                        'scaleX'     : 1,
+                        'scaleY'     : 1
+                    });
+                }
+            });
+            rect.set('selectable', true);
+            canvas.add(rect);
+            canvas.setActiveObject(rect);
+        }
+        function createCircle(radius, color) {
+            var rect = new fabric.Circle({
+                left: radius * pixelsPerMeter,
+                top: radius * pixelsPerMeter,
+                fill: '#' + color,
+                radius: radius * pixelsPerMeter
+            });
+            rect.set('selectable', true);
+            canvas.add(rect);
+            canvas.setActiveObject(rect);
+        }
+        function deleteSelected() {
+            if (canvas.getActiveGroup()) {
+                canvas.getActiveGroup().forEachObject(function (o) {
+                    canvas.remove(o)
+                });
+                canvas.discardActiveGroup().renderAll();
+            } else {
+                canvas.remove(canvas.getActiveObject());
+            }
+        }
+
+        function save() {
+            var json = canvas.toJSON();
+            $("#json").val(JSON.stringify(json));
+        }
+    </script>
+</head>
+<body onload="onload()">
+<canvas id="c" width="700" height="300" style="border: #000000 solid 1px;">
+</canvas>
+<div>
+    Цвет <input type="text" id="color" value="FFFFFF"/>
+    <hr/>
+
+    Длинна <input type="number" id="width" value="1"/><br/>
+    Ширина <input type="number" id="height" value="1"/><br/>
+    <button onclick="createRect($('#width').val(), $('#height').val(), $('#color').val())">
+        Квадрат
+    </button>
+    <hr/>
+
+    Радиус <input type="number" id="radius" value="1"/><br/>
+    <button onclick="createCircle($('#radius').val(), $('#color').val())">Круг</button>
+    <hr/>
+    <button onclick="deleteSelected()">Удалить</button>
+    <hr/>
+    <button onclick="save()">Сохранить</button>
+</div>
+
+<textarea id="json" rows="25" cols="80"></textarea>
+
+</body>
+</html>

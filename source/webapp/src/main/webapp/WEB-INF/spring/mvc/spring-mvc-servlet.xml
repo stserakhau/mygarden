@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	                    http://www.springframework.org/schema/context
+	                    http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	                    http://www.springframework.org/schema/mvc
+	                    http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+    <context:property-placeholder
+            location="${config.file}"
+            ignore-unresolvable="true"
+            ignore-resource-not-found="true"
+            system-properties-mode="ENVIRONMENT"/>
+
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
+    <context:component-scan base-package="com.i4biz.mygarden.web.*"/>
+
+    <!--<aop:aspectj-autoproxy/>-->
+
+    <!-- Configure to plugin JSON as request and response in method handler -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+                <ref bean="jsonMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Configure bean to convert JSON to POJO and vice versa -->
+    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="${file.maxUploadSize}"/>
+        <property name="maxInMemorySize" value="${file.maxInMemorySize}"/>
+    </bean>
+
+    <bean class="com.i4biz.mygarden.web.exception.ExceptionToHTTPStatusResolver">
+        <property name="exceptionProcessorMapping">
+            <map key-type="java.lang.Class" value-type="java.lang.Integer">
+                <entry key="java.lang.RuntimeException">
+                    <bean class="com.i4biz.mygarden.web.exception.DefaultExceptionProcessor">
+                        <constructor-arg value="500"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

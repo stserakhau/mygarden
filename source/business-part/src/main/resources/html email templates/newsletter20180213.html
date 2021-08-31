@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html,body{
+            font-family:Verdana,sans-serif;font-size:15px;line-height:1.5
+        }
+        html{
+            overflow-x:hidden
+        }
+        h1,h2,h3,h4,h5,h6,.email-text-wide,.email-text-slim{
+            font-family:"Segoe UI",Arial,sans-serif
+        }
+        h1{
+            font-size:36px;
+            letter-spacing: 0px;
+        }
+        h2{
+            font-size:30px;
+            letter-spacing: 0px;
+        }
+        h3{
+            font-size:24px
+        }
+        h4{
+            font-size:20px
+        }
+        h5{
+            font-size:18px
+        }
+        h6{font-size:16px
+        }
+        .email-text-wide{
+            letter-spacing:6px
+        }
+        .email-content{
+            max-width:980px;
+            margin:auto;
+        }
+        .email-container-divider{
+            padding:0.01em 16px;
+            color:darkgrey !important;
+        }
+        .email-container-header{
+            padding:0.01em 16px;
+            background-color:#009688 !important;
+            color:white !important;
+        }
+        .email-container-header:after,.email-container-header:before, .email-container-body:after, .email-container-body:before{
+            content:"";
+            display:table;
+            clear:both
+        }
+        .email-container-body{
+            padding:0.01em 16px;
+            margin-bottom: 16px;
+            background-color:white !important;
+            color:#808080 !important;
+        }
+        .email-signature{
+            padding:0.01em 16px;
+            background-color:darkgray !important;
+            color:white !important;
+        }
+        .email-btn-floating-large:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .email-btn-floating-large{
+            display:inline-block;
+            text-align:center;
+            color:#fff;
+            background-color:#004a43;
+            position:relative;
+            overflow:hidden;
+            z-index:1;
+            padding:0;
+            border-radius:50%;
+            cursor:pointer;
+            font-size:24px;
+            width:56px;
+            height:56px;
+            line-height:56px;
+            -webkit-touch-callout:none;
+            -webkit-user-select:none;
+            -khtml-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+            -webkit-transition:background-color .25s,color .15s,box-shadow .25s,opacity 0.25s,filter 0.25s,border 0.15s;
+            transition:background-color .25s,color .15s,box-shadow .15s,opacity .25s,filter .25s,border .15s;
+        }
+        a{
+            background-color:transparent;
+            font-weight:inherit;
+            color:inherit;
+            text-decoration:none!important;
+            padding:0 8px;
+            border-bottom:3px solid transparent;
+            -webkit-text-decoration-skip:objects;
+            -webkit-transition:border-bottom .25s;
+            transition:border-bottom .25s
+        }
+        a:active,a:hover{
+            outline-width:0;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div class="email-content">
+        <img src="https://egardening.ru/static/eGardening.png">
+        <a href="https://ok.ru/group/54093304758360"  style="float:right"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDk1LjQ4MSA5NS40ODEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDk1LjQ4MSA5NS40ODE7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNDMuMDQxLDY3LjI1NGMtNy40MDItMC43NzItMTQuMDc2LTIuNTk1LTE5Ljc5LTcuMDY0Yy0wLjcwOS0wLjU1Ni0xLjQ0MS0xLjA5Mi0yLjA4OC0xLjcxMyAgICBjLTIuNTAxLTIuNDAyLTIuNzUzLTUuMTUzLTAuNzc0LTcuOTg4YzEuNjkzLTIuNDI2LDQuNTM1LTMuMDc1LDcuNDg5LTEuNjgyYzAuNTcyLDAuMjcsMS4xMTcsMC42MDcsMS42MzksMC45NjkgICAgYzEwLjY0OSw3LjMxNywyNS4yNzgsNy41MTksMzUuOTY3LDAuMzI5YzEuMDU5LTAuODEyLDIuMTkxLTEuNDc0LDMuNTAzLTEuODEyYzIuNTUxLTAuNjU1LDQuOTMsMC4yODIsNi4yOTksMi41MTQgICAgYzEuNTY0LDIuNTQ5LDEuNTQ0LDUuMDM3LTAuMzgzLDcuMDE2Yy0yLjk1NiwzLjAzNC02LjUxMSw1LjIyOS0xMC40NjEsNi43NjFjLTMuNzM1LDEuNDQ4LTcuODI2LDIuMTc3LTExLjg3NSwyLjY2MSAgICBjMC42MTEsMC42NjUsMC44OTksMC45OTIsMS4yODEsMS4zNzZjNS40OTgsNS41MjQsMTEuMDIsMTEuMDI1LDE2LjUsMTYuNTY2YzEuODY3LDEuODg4LDIuMjU3LDQuMjI5LDEuMjI5LDYuNDI1ICAgIGMtMS4xMjQsMi40LTMuNjQsMy45NzktNi4xMDcsMy44MWMtMS41NjMtMC4xMDgtMi43ODItMC44ODYtMy44NjUtMS45NzdjLTQuMTQ5LTQuMTc1LTguMzc2LTguMjczLTEyLjQ0MS0xMi41MjcgICAgYy0xLjE4My0xLjIzNy0xLjc1Mi0xLjAwMy0yLjc5NiwwLjA3MWMtNC4xNzQsNC4yOTctOC40MTYsOC41MjgtMTIuNjgzLDEyLjczNWMtMS45MTYsMS44ODktNC4xOTYsMi4yMjktNi40MTgsMS4xNSAgICBjLTIuMzYyLTEuMTQ1LTMuODY1LTMuNTU2LTMuNzQ5LTUuOTc5YzAuMDgtMS42MzksMC44ODYtMi44OTEsMi4wMTEtNC4wMTRjNS40NDEtNS40MzMsMTAuODY3LTEwLjg4LDE2LjI5NS0xNi4zMjIgICAgQzQyLjE4Myw2OC4xOTcsNDIuNTE4LDY3LjgxMyw0My4wNDEsNjcuMjU0eiIgZmlsbD0iIzAwOTY4OCIvPgoJCTxwYXRoIGQ9Ik00Ny41NSw0OC4zMjljLTEzLjIwNS0wLjA0NS0yNC4wMzMtMTAuOTkyLTIzLjk1Ni0yNC4yMThDMjMuNjcsMTAuNzM5LDM0LjUwNS0wLjAzNyw0Ny44NCwwICAgIGMxMy4zNjIsMC4wMzYsMjQuMDg3LDEwLjk2NywyNC4wMiwyNC40NzhDNzEuNzkyLDM3LjY3Nyw2MC44ODksNDguMzc1LDQ3LjU1LDQ4LjMyOXogTTU5LjU1MSwyNC4xNDMgICAgYy0wLjAyMy02LjU2Ny01LjI1My0xMS43OTUtMTEuODA3LTExLjgwMWMtNi42MDktMC4wMDctMTEuODg2LDUuMzE2LTExLjgzNSwxMS45NDNjMC4wNDksNi41NDIsNS4zMjQsMTEuNzMzLDExLjg5NiwxMS43MDkgICAgQzU0LjM1NywzNS45NzEsNTkuNTczLDMwLjcwOSw1OS41NTEsMjQuMTQzeiIgZmlsbD0iIzAwOTY4OCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="/></a>
+        <a href="https://vk.com/egardening"  style="float:right"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDk2LjQ5NiA5Ni40OTYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDk2LjQ5NiA5Ni40OTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNOTIuNDk5LDY1LjE3OGMtMi44NzMtMy40NDYtNi4yNTQtNi4zODctOS40NTMtOS41MWMtMi44ODYtMi44MTUtMy4wNjgtNC40NDgtMC43NDgtNy42OTcgICBjMi41MzItMy41NDYsNS4yNTUtNi45NTYsNy44MS0xMC40ODZjMi4zODUtMy4yOTksNC44MjMtNi41ODksNi4wNzgtMTAuNTM5YzAuNzk2LTIuNTEzLDAuMDkyLTMuNjIzLTIuNDg1LTQuMDYzICAgYy0wLjQ0NC0wLjA3Ny0wLjkwMy0wLjA4MS0xLjM1NS0wLjA4MWwtMTUuMjg5LTAuMDE4Yy0xLjg4My0wLjAyOC0yLjkyNCwwLjc5My0zLjU5LDIuNDYyYy0wLjg5OSwyLjI1Ni0xLjgyNiw0LjUxLTIuODk3LDYuNjg3ICAgYy0yLjQzLDQuOTM2LTUuMTQ0LDkuNzA3LTguOTQ5LDEzLjc0N2MtMC44MzksMC44OTEtMS43NjcsMi4wMTctMy4xNjksMS41NTNjLTEuNzU0LTAuNjQtMi4yNzEtMy41My0yLjI0Mi00LjUwN2wtMC4wMTUtMTcuNjQ3ICAgYy0wLjM0LTIuNTIxLTAuODk5LTMuNjQ1LTMuNDAyLTQuMTM1bC0xNS44ODIsMC4wMDNjLTIuMTIsMC0zLjE4MywwLjgxOS00LjMxNSwyLjE0NWMtMC42NTMsMC43NjYtMC44NSwxLjI2MywwLjQ5MiwxLjUxNyAgIGMyLjYzNiwwLjUsNC4xMjEsMi4yMDYsNC41MTUsNC44NDljMC42MzIsNC4yMjMsMC41ODgsOC40NjMsMC4yMjQsMTIuNzAzYy0wLjEwNywxLjIzOC0wLjMyLDIuNDczLTAuODExLDMuNjI5ICAgYy0wLjc2OCwxLjgxNy0yLjAwOCwyLjE4Ny0zLjYzNywxLjA2OWMtMS40NzUtMS4wMTItMi41MTEtMi40NC0zLjUyNS0zLjg3NGMtMy44MDktNS4zODItNi44NDgtMTEuMTg2LTkuMzI2LTE3LjI4NSAgIGMtMC43MTYtMS43NjItMS45NTEtMi44My0zLjgxOC0yLjg1OWMtNC41ODctMC4wNzMtOS4xNzUtMC4wODUtMTMuNzYyLDAuMDA0Yy0yLjc2LDAuMDUyLTMuNTgzLDEuMzkyLTIuNDU5LDMuODk0ICAgYzQuOTk2LDExLjExMywxMC41NTcsMjEuOTE3LDE3LjgxNiwzMS43NTljMy43MjcsNS4wNTEsOC4wMDYsOS41MSwxMy41MzQsMTIuNjdjNi4yNjUsMy41ODIsMTMuMDA5LDQuNjYsMjAuMTEyLDQuMzI4ICAgYzMuMzI2LTAuMTU2LDQuMzI1LTEuMDIxLDQuNDc5LTQuMzM2YzAuMTA0LTIuMjY4LDAuMzYxLTQuNTIzLDEuNDgtNi41NjFjMS4wOTgtMiwyLjc2MS0yLjM4MSw0LjY3OC0xLjEzNyAgIGMwLjk1OSwwLjYyMywxLjc2NywxLjQxNiwyLjUzLDIuMjUyYzEuODcyLDIuMDQ4LDMuNjc3LDQuMTU4LDUuNjIsNi4xMzdjMi40MzcsMi40OCw1LjMyNCwzLjk0NSw4Ljk1NCwzLjY0Nkw5My43NDQsNzUuNSAgIGMyLjI2NC0wLjE0OCwzLjQzOC0yLjkyNCwyLjEzOC01LjQ1MUM5NC45NjksNjguMjc5LDkzLjc3MSw2Ni43MDMsOTIuNDk5LDY1LjE3OHoiIGZpbGw9IiMwMDk2ODgiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"/></a>
+        <div class="email-container-divider">
+            <p class="email-text-wide">НОВОСТНАЯ РАССЫЛКА</p>
+        </div>
+        <div class="email-container-header">
+            <a href="https://egardening.ru/news_full.tiles?id=3"><h3>eGardening v2.0</h3></a>
+        </div>
+        <div class="email-container-body">
+            <p>Итак, вторая версия. С приближением сезона мы выпустили новую доработанную и исправленную версию электронного планировщика.</p>
+            <p>Одно из главных улучшений - можно попробовать весь функционал сайта без регистрации. Создайте свои культуры, работы, которые обычно выполняете и используемые удобрения. Попробуйте добавить шаблон или скопировать и исправить готовый...</p>
+            <a class="email-btn-floating-large" href="https://egardening.ru/news_full.tiles?id=3" style="float:right; color:white;"> > </a>
+        </div>
+
+        <div class="email-signature">
+            <p>С уважением, команда &copy; eGardening.ru</p>
+        </div>
+        <div class="email-container-divider">
+            <p>*Вы получили это письмо, потому что подписаны на еженедельную рассылку от сайта eGardening.ru. Если Вы больше не хотите получать новостную рассылку, пожалуйста, откажитесь в настройках <a href="https://egardening.ru/user_profile.tiles">Личного профиля</a>.</p>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

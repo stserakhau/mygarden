@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                           http://www.springframework.org/schema/context
+    					   http://www.springframework.org/schema/context/spring-context-4.2.xsd
+                           http://www.springframework.org/schema/tx
+				    	   http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+    <context:property-placeholder
+            location="${config.file}"
+            ignore-unresolvable="true"
+            ignore-resource-not-found="true"
+            system-properties-mode="OVERRIDE"/>
+
+
+    <context:component-scan base-package="com.i4biz.mygarden"/>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+
+        <property name="annotatedClasses">
+            <list>
+                <value>com.i4biz.mygarden.domain.SpeciesTaskFertilizer</value>
+                <value>com.i4biz.mygarden.domain.SpeciesTaskFertilizerView</value>
+                <value>com.i4biz.mygarden.domain.catalog.Catalog</value>
+                <value>com.i4biz.mygarden.domain.catalog.Item</value>
+                <value>com.i4biz.mygarden.domain.catalog.ItemView</value>
+                <value>com.i4biz.mygarden.domain.datastorage.File</value>
+                <value>com.i4biz.mygarden.domain.email.Email</value>
+                <value>com.i4biz.mygarden.domain.news.News</value>
+                <value>com.i4biz.mygarden.domain.news.NewsView</value>
+                <value>com.i4biz.mygarden.domain.region.RegionView</value>
+                <value>com.i4biz.mygarden.domain.report.UserWeatherNotificationReport</value>
+                <value>com.i4biz.mygarden.domain.shop.Order</value>
+                <value>com.i4biz.mygarden.domain.shop.OrderItem</value>
+                <value>com.i4biz.mygarden.domain.shop.OrderTransaction</value>
+                <value>com.i4biz.mygarden.domain.task.Task</value>
+                <value>com.i4biz.mygarden.domain.user.NotificationSettings</value>
+                <value>com.i4biz.mygarden.domain.user.PatternAuthor</value>
+                <value>com.i4biz.mygarden.domain.user.User</value>
+                <value>com.i4biz.mygarden.domain.user.UserPlant</value>
+                <value>com.i4biz.mygarden.domain.user.UserProfile</value>
+                <value>com.i4biz.mygarden.domain.user.UserView</value>
+                <value>com.i4biz.mygarden.domain.user.task.UserTask</value>
+                <value>com.i4biz.mygarden.domain.user.task.UserTaskView</value>
+                <value>com.i4biz.mygarden.domain.user.UserWork</value>
+                <value>com.i4biz.mygarden.domain.user.UserWorkView</value>
+                <value>com.i4biz.mygarden.domain.weather.Weather</value>
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <!--  <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+               <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+               <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+               <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+               <prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size}</prop>
+               <prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size}</prop>
+               <prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>
+               <prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements}</prop>
+               <prop key="hibernate.c3p0.idle_test_period">${hibernate.c3p0.idle_test_period}</prop>
+               <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+               <prop key="hibernate.cache.provider_configuration_file_resource_path">config/ehcache-hibernate-config.xml</prop>-->
+            </props>
+        </property>
+    </bean>
+
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <context:annotation-config/>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+</beans>

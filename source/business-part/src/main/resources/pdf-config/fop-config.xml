@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<fop version="1.0">
+    <renderers>
+        <renderer mime="application/pdf">
+            <fonts>
+                <font kerning="yes" embed-url="verdana.ttf">
+                    <font-triplet name="verdana" style="normal" weight="normal"/>
+                </font>
+                <font kerning="yes" embed-url="verdanab.ttf">
+                    <font-triplet name="verdana" style="normal" weight="bold"/>
+                </font>
+                <font kerning="yes" embed-url="arial.ttf">
+                    <font-triplet name="arial" style="normal" weight="normal"/>
+                </font>
+                <font kerning="yes" embed-url="arialbd.ttf">
+                    <font-triplet name="arial" style="normal" weight="bold"/>
+                </font>
+            </fonts>
+        </renderer>
+    </renderers>
+</fop>
+
